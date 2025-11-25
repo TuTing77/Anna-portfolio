@@ -1,0 +1,880 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Anna's English Learning Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Base Styles */
+        :root {
+            --primary: #3498db;
+            --secondary: #2c3e50;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --text: #333;
+            --text-light: #7f8c8d;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f8f9fa;
+            color: var(--text);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        section {
+            padding: 80px 0;
+        }
+        
+        h1, h2, h3 {
+            margin-bottom: 20px;
+            color: var(--secondary);
+        }
+        
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+        
+        h2 {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 40px;
+            position: relative;
+        }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--primary);
+        }
+        
+        h3 {
+            font-size: 1.8rem;
+            color: var(--primary);
+        }
+        
+        p {
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            background-color: var(--primary);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: #2980b9;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .card {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        /* Header Styles */
+        header {
+            background-color: var(--secondary);
+            color: white;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+        
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo i {
+            margin-right: 10px;
+            color: var(--primary);
+        }
+        
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav-links li {
+            margin-left: 30px;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            position: relative;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background-color: var(--primary);
+            transition: width 0.3s;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+        
+        .mobile-menu {
+            display: none;
+            font-size: 24px;
+            cursor: pointer;
+        }
+        
+        /* Home Section */
+        #home {
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1523531294919-4bcd7c65e216?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 200px 0 150px;
+            position: relative;
+        }
+        
+        #home h1 {
+            color: white;
+            font-size: 4rem;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+        }
+        
+        #home p {
+            font-size: 1.5rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+        }
+        
+        .scroll-down {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: white;
+            font-size: 2rem;
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0) translateX(-50%);
+            }
+            40% {
+                transform: translateY(-20px) translateX(-50%);
+            }
+            60% {
+                transform: translateY(-10px) translateX(-50%);
+            }
+        }
+        
+        /* About Section */
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 40px;
+        }
+        
+        .about-text {
+            flex: 1;
+        }
+        
+        .interests {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            margin-top: 30px;
+        }
+        
+        .interest-item {
+            display: flex;
+            align-items: center;
+            background-color: var(--light);
+            padding: 10px 20px;
+            border-radius: 50px;
+        }
+        
+        .interest-item i {
+            margin-right: 10px;
+            color: var(--primary);
+        }
+        
+        /* Reading Section */
+        .book-review {
+            margin-bottom: 30px;
+        }
+        
+        .book-cover {
+            width: 200px;
+            float: left;
+            margin-right: 30px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        /* Listening Section */
+        .music-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .music-item {
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .music-link {
+            display: inline-block;
+            margin-top: 15px;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+        
+        .music-link:hover {
+            color: var(--accent);
+        }
+        
+        /* Vocabulary Section */
+        .vocabulary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .vocab-item {
+            border-left: 4px solid var(--primary);
+            transition: all 0.3s ease;
+        }
+        
+        .vocab-item:hover {
+            border-left-color: var(--accent);
+        }
+        
+        .vocab-word {
+            font-weight: bold;
+            font-size: 1.2rem;
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+        
+        /* Speaking Section */
+        .story-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .story-quote {
+            font-style: italic;
+            text-align: center;
+            margin: 30px 0;
+            padding: 20px;
+            background-color: var(--light);
+            border-left: 4px solid var(--primary);
+            position: relative;
+        }
+        
+        .story-quote::before, .story-quote::after {
+            content: '"';
+            font-size: 3rem;
+            color: var(--primary);
+            opacity: 0.3;
+            position: absolute;
+        }
+        
+        .story-quote::before {
+            top: 10px;
+            left: 10px;
+        }
+        
+        .story-quote::after {
+            bottom: 10px;
+            right: 10px;
+        }
+        
+        /* Letter Section */
+        .letter-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .letter-meta {
+            margin-bottom: 30px;
+            color: var(--text-light);
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .letter-meta-item {
+            display: flex;
+            align-items: center;
+        }
+        
+        .letter-meta-item i {
+            margin-right: 10px;
+            color: var(--primary);
+        }
+        
+        .letter-signature {
+            margin-top: 40px;
+            text-align: right;
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--secondary);
+            color: white;
+            padding: 60px 0 30px;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+        }
+        
+        .footer-section h3 {
+            color: white;
+            margin-bottom: 20px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+        
+        .footer-section h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 2px;
+            background-color: var(--primary);
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-links a {
+            color: var(--light);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--primary);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255,255,255,0.1);
+            border-radius: 50%;
+            color: white;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--primary);
+            transform: translateY(-3px);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .about-content {
+                flex-direction: column;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background-color: var(--secondary);
+                flex-direction: column;
+                padding: 20px;
+                box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+            }
+            
+            .nav-links.active {
+                display: flex;
+            }
+            
+            .nav-links li {
+                margin: 10px 0;
+            }
+            
+            .mobile-menu {
+                display: block;
+            }
+            
+            #home h1 {
+                font-size: 2.5rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+            
+            section {
+                padding: 60px 0;
+            }
+            
+            .book-cover {
+                float: none;
+                display: block;
+                margin: 0 auto 20px;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            #home {
+                padding: 150px 0 100px;
+            }
+            
+            #home h1 {
+                font-size: 2rem;
+            }
+            
+            #home p {
+                font-size: 1.2rem;
+            }
+            
+            h2 {
+                font-size: 1.8rem;
+            }
+            
+            section {
+                padding: 40px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <nav>
+                <div class="logo">
+                    <i class="fas fa-graduation-cap"></i>
+                    Anna's Portfolio
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About Me</a></li>
+                    <li><a href="#reading">Reading</a></li>
+                    <li><a href="#listening">Listening</a></li>
+                    <li><a href="#vocabulary">Vocabulary</a></li>
+                    <li><a href="#speaking">Speaking</a></li>
+                    <li><a href="#letter">Letter</a></li>
+                </ul>
+                <div class="mobile-menu">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main>
+        <!-- Home Section -->
+        <section id="home">
+            <div class="container">
+                <h1>Welcome to Anna's Website</h1>
+                <p>EELC1011-English: Self-introduction | Section: 003 | Teacher: Joshua Lee | Date: 11th November, 2025</p>
+                <a href="#about" class="btn">Learn More About Me</a>
+            </div>
+            <div class="scroll-down">
+                <i class="fas fa-chevron-down"></i>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about">
+            <div class="container">
+                <h2>About Me</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <div class="card">
+                            <h3>Hello everyone!</h3>
+                            <p>My name is Anna. I am 19 years old and I am a university student majoring in Portuguese studies in Macau. I love this city of Macau. It not only combines the unique charm of Chinese and Western cultures, but also enables me to constantly experience the beauty of multilingualism in my daily life.</p>
+                            <p>My major is Portuguese studies and I am currently working hard to improve my Portuguese language skills. I hope to deeply explore the cultures and literatures of Portuguese-speaking countries in the future.</p>
+                            <p>In my spare time, I enjoy shopping. I often wander through the streets and alleys of Macau, searching for unique stores and new things. Listening to music is one of my ways to relax. Whether it's pop, classical or Portuguese songs, they can all make me feel happy. I also love traveling and enjoy using my holidays to visit different places and experience the local customs and cultures, enriching my life experience.</p>
+                            <p>I have a cheerful personality and I really enjoy sharing the little moments of life with my friends. If you also like languages, shopping, music or traveling, please feel free to communicate with me!</p>
+                            
+                            <div class="interests">
+                                <div class="interest-item">
+                                    <i class="fas fa-shopping-bag"></i>
+                                    <span>Shopping</span>
+                                </div>
+                                <div class="interest-item">
+                                    <i class="fas fa-music"></i>
+                                    <span>Music</span>
+                                </div>
+                                <div class="interest-item">
+                                    <i class="fas fa-plane"></i>
+                                    <span>Traveling</span>
+                                </div>
+                                <div class="interest-item">
+                                    <i class="fas fa-language"></i>
+                                    <span>Languages</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Reading Section -->
+        <section id="reading">
+            <div class="container">
+                <h2>Reading</h2>
+                <div class="card book-review">
+                    <img src="https://i.imgur.com/2Q3w4Vq.jpeg" alt="The Old Man and the Sea" class="book-cover">
+                    <h3>"The Old Man and the Sea"</h3>
+                    <p>"The Old Man and the Sea" is one of my favorite novels. It is a short story by the famous American writer Ernest Hemingway. He uses simple language to discuss the deeper meaning of life. After reading this book, I always reflect on our personal values and remain strong when facing life challenges.</p>
+                    <p>This book is about an old fisherman named Santiago from Cuba. After 84 days, he caught a big fish. This fish dragged the boat for two days and two nights at sea. Then, suddenly, the old man encountered a shark. They fought to the death, but the big fish was still eaten by the shark. The old man only brought the fish bones home.</p>
+                    <p>What impressed me the most was how Santiago fought against the shark. During the fight with the shark, the old man had many heartfelt conversations with himself. These conversations showed how he encouraged himself to overcome difficulties.</p>
+                    <p>Although Santiago couldn't protect the fish, I think he ultimately did his best to protect his self-esteem. Facing long-term failures and loneliness, he didn't choose to give up but believed in himself and challenged the sea.</p>
+                    <p>This story tells us that even if we fail, our efforts are still important. Santiago's never-give-up attitude, love for life, and excitement for new adventures gave us hope. Just like Santiago, we all face challenges in life. If we remain brave, full of hope, and not afraid of failure, we can find the meaning of life.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Listening Section -->
+        <section id="listening">
+            <div class="container">
+                <h2>Listening</h2>
+                <div class="music-list">
+                    <div class="card music-item">
+                        <h3>Shadow of the Sun</h3>
+                        <p>This song was sung by Max Elto. The song uses "The Shadow of the Sun" to symbolize the difficulties in life, depicting the struggle and pursuit of one's own heart of people between light and darkness, conveying the attitude of holding on and not giving up hope in the face of difficulties, and accumulating strength in the trough to eventually welcome the light.</p>
+                        <a href="https://youtu.be/EhcMCYEX1O8?si=u0BNVlCO4a5_Ri2w" class="music-link" target="_blank">
+                            <i class="fab fa-youtube"></i> Listen to the song
+                        </a>
+                    </div>
+                    <div class="card music-item">
+                        <h3>Someone Like You</h3>
+                        <p>This song was sung by Adele. It tells the feelings of being forced to part after the fading of emotions, filled with helplessness and pain. It not only shows the struggle of emotions but also conveys the determination to face reality and bid farewell to the past.</p>
+                        <a href="https://youtu.be/-us6lWADDWQ?si=TLJjcIC6vreKqLI2" class="music-link" target="_blank">
+                            <i class="fab fa-youtube"></i> Listen to the song
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Vocabulary Section -->
+        <section id="vocabulary">
+            <div class="container">
+                <h2>Vocabulary</h2>
+                <div class="vocabulary-grid">
+                    <div class="card vocab-item">
+                        <div class="vocab-word">quintessential</div>
+                        <div class="vocab-definition">representing the most perfect or typical example of a quality or class.</div>
+                    </div>
+                    <div class="card vocab-item">
+                        <div class="vocab-word">ephemeral</div>
+                        <div class="vocab-definition">lasting for a very short time.</div>
+                    </div>
+                    <div class="card vocab-item">
+                        <div class="vocab-word">disparate</div>
+                        <div class="vocab-definition">fundamentally different or distinct in kind.</div>
+                    </div>
+                    <div class="card vocab-item">
+                        <div class="vocab-word">conundrum</div>
+                        <div class="vocab-definition">a confusing and difficult problem or question.</div>
+                    </div>
+                    <div class="card vocab-item">
+                        <div class="vocab-word">perseverance</div>
+                        <div class="vocab-definition">the quality of continuing to do something despite difficulties or delay in achieving success.</div>
+                    </div>
+                    <div class="card vocab-item">
+                        <div class="vocab-word">exacerbate</div>
+                        <div class="vocab-definition">to make a problem, bad situation, or negative feeling worse.</div>
+                    </div>
+                    <div class="card vocab-item">
+                        <div class="vocab-word">ubiquitous</div>
+                        <div class="vocab-definition">present, appearing, or found everywhere.</div>
+                    </div>
+                    <div class="card vocab-item">
+                        <div class="vocab-word">ostentatious</div>
+                        <div class="vocab-definition">characterized by vulgar or pretentious display, designed to impress or attract notice.</div>
+                    </div>
+                    <div class="card vocab-item">
+                        <div class="vocab-word">magnanimous</div>
+                        <div class="vocab-definition">generous or forgiving, especially towards a rival or someone less powerful than oneself.</div>
+                    </div>
+                    <div class="card vocab-item">
+                        <div class="vocab-word">vicissitudes</div>
+                        <div class="vocab-definition">changes of fortune or circumstances, often sudden and negative.</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Speaking Section -->
+        <section id="speaking">
+            <div class="container">
+                <h2>Speaking</h2>
+                <div class="card story-container">
+                    <h3>Stars and Footprints</h3>
+                    <p>Two young people went hiking together. During the journey, they had a dispute over the route. One of them said some hurtful words in an overly aggressive manner. The injured young person felt very sad inside, but he just silently wrote on the snow:</p>
+                    
+                    <div class="story-quote">
+                        "Today, my best friend hurt me with words."
+                    </div>
+                    
+                    <p>The two continued to walk. The sky grew darker and the snowstorm suddenly intensified. They got lost and were cold and scared. Just at the critical moment, the young man who had said hurtful words found a sheltering cave and shared the only dry food with the other. After recovering his strength, the injured young man carved on the stone wall of the cave:</p>
+                    
+                    <div class="story-quote">
+                        "Today, my best friend saved me and gave me warmth."
+                    </div>
+                    
+                    <p>A friend asked him, "When I hurt you, you wrote it on the snow; but when I helped you, you carved it on the stone. Why is that?"</p>
+                    
+                    <p>The young man replied: "Harm is like snow - it vanishes as soon as the wind blows; but kindness and assistance are like stars - they should always be engraved in our hearts, and will never be erased no matter how time passes."</p>
+                    
+                    <p>Learn to write the hurts in places where they can easily fade away, and engrave kindness on the stones of life.</p>
+                    
+                    <p style="text-align: right; margin-top: 20px;"><em>Author: Anonymous</em></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Letter Section -->
+        <section id="letter">
+            <div class="container">
+                <h2>Letter</h2>
+                <div class="card letter-container">
+                    <div class="letter-meta">
+                        <div class="letter-meta-item">
+                            <i class="fas fa-book"></i>
+                            <span>EELC1011-English: Self-introduction</span>
+                        </div>
+                        <div class="letter-meta-item">
+                            <i class="fas fa-users"></i>
+                            <span>Section: 003</span>
+                        </div>
+                        <div class="letter-meta-item">
+                            <i class="fas fa-chalkboard-teacher"></i>
+                            <span>Teacher: Joshua Lee</span>
+                        </div>
+                        <div class="letter-meta-item">
+                            <i class="fas fa-calendar-alt"></i>
+                            <span>Date: 11th November, 2025</span>
+                        </div>
+                    </div>
+                    
+                    <p>Dear Mr. Lee:</p>
+                    
+                    <p>Thank you for visiting my blog. Time flies and this English course is coming to an end. This semester's language learning has given me a lot to gain: not only have I mastered the practical framework for writing emails, but I have also improved my oral expression through group discussions - in the "Cross-Cultural Body Language" topic, I was able to clearly express my opinions by combining classroom cases, which was something I was not good at before.</p>
+                    
+                    <p>Looking back at my portfolio, my strength lies in having a relatively clear logical structure in written expression, but my fluency in spoken language still needs improvement. The most significant discovery I made this semester is that language learning is not about "memorizing grammar", but about "using scenarios" - accumulating vocabulary through daily conversations, which is more effective than rote memorization of words.</p>
+                    
+                    <p>Looking ahead, my specific goals are: to achieve seamless daily communication with foreigners within 3 months, and to be able to independently complete a 200-word academic paragraph within 6 months. The action plan includes: 1. Spend 15 minutes each day doing "topic oral practice"; 2. Read a short article every week, extract 3 practical sentence patterns and rewrite them; 3. Complete 1 oral simulation dialogue every month.</p>
+                    
+                    <p>Thank you, Professor, for your guidance this semester. I will continue to implement the plan and improve my language skills.</p>
+                    
+                    <div class="letter-signature">
+                        <p>Sincerely,</p>
+                        <p>Zheng Mei Ting (Anna)</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Anna's Portfolio</h3>
+                    <p>This is my English learning portfolio for EELC1011 course. It showcases my progress, interests, and reflections on language learning.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-section">
+                    <h3>Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#about">About Me</a></li>
+                        <li><a href="#reading">Reading</a></li>
+                        <li><a href="#listening">Listening</a></li>
+                        <li><a href="#vocabulary">Vocabulary</a></li>
+                        <li><a href="#speaking">Speaking</a></li>
+                        <li><a href="#letter">Letter</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Contact Info</h3>
+                    <p><i class="fas fa-envelope"></i> anna@example.com</p>
+                    <p><i class="fas fa-university"></i> University of Macau</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Macau, China</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Anna's English Learning Portfolio. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        document.querySelector('.mobile-menu').addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('active');
+        });
+        
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
+                
+                // Close mobile menu if open
+                document.querySelector('.nav-links').classList.remove('active');
+                
+                window.scrollTo({
+                    top: targetElement.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.style.backgroundColor = 'rgba(44, 62, 80, 0.95)';
+                header.style.backdropFilter = 'blur(10px)';
+            } else {
+                header.style.backgroundColor = 'var(--secondary)';
+                header.style.backdropFilter = 'none';
+            }
+        });
+        
+        // Card animation effect
+        const cards = document.querySelectorAll('.card');
+        
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+        
+        cards.forEach(card => {
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+            card.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+            observer.observe(card);
+        });
+    </script>
+</body>
+</html>
